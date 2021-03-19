@@ -48,20 +48,30 @@
         - type: `Boolean`
         - Feature is only in available in `r` (read) operations, if set to true you will be able to remove a field item.
     - `config`
-    - `theme` - `Object || String`
-        - title_text_color
-        - sub_title_description_text_color
-        - wrap_around_border_color
-        - divider_border_color
-        - keys_bg_color
-        - keys_text_color
-        - values_bg_color
-        - values_text_color
-        - select_arrow_down_color
-        - button_bg_color
-        - button_text_color
-        - background_selected
-        - modal_overlay_bg
+    - `theme` 
+        - Type:`Object || String`
+
+        - ## Theme properties
+            - title_text_color
+            - sub_title_description_text_color
+            - wrap_around_border_color
+            - divider_border_color
+            - keys_bg_color
+            - keys_text_color
+            - values_bg_color
+            - values_text_color
+            - select_arrow_down_color
+            - button_bg_color
+            - button_text_color
+            - background_selected
+            - modal_overlay_bg
+            - select_arrow_down_color
+            - select_option_hover_bg
+            - select_option_border_color
+            - select_option_bg
+            - select_chip_bg_color
+            - select_chip_hover_bg_color
+            - select_chip_border_color
 
 # Events
 - **`onChange({data,btn,fields,form})`** - fires everytime a user input's data
