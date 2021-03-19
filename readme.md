@@ -35,18 +35,22 @@
 
 # Props
 - ### **Config** properties
-    -  `data` - `Object`
-            - A data object uses the `key` of the property for the name of the field, and the object body as the configuration of the input field.
-        - `operation` - `String`
-
-            - `"r"` for read operation, or `"rw"` for read and write
-        - `submit_button` - `String`
-            - The text that will appear on the submit button
-        - `allowRemoveProp` - `Boolean`
-            - Feature is only in available in `r` (read) operations, if set to true you will be able to remove a field item.
+    -  `data` 
+        - type: `Object`
+        - Desc: A data object uses the `key` of the property for the name of the field, and the object body as the configuration of the input field.
+    - `operation` 
+        - type: `String`
+        - desc: `"r"` for read operation, or `"rw"` for read and write
+    - `submit_button` 
+        - type:`String`
+        - The text that will appear on the submit button
+    - `allowRemoveProp` 
+        - type: `Boolean`
+        - Feature is only in available in `r` (read) operations, if set to true you will be able to remove a field item.
+    - `config`
     - `theme` - `Object || String`
         - title_text_color
-        - sub_title_description_text_colo
+        - sub_title_description_text_color
         - wrap_around_border_color
         - divider_border_color
         - keys_bg_color
