@@ -4,11 +4,11 @@
 - config
 - appearance
 ## Events
-- onChange()
-- onError()
-- onSubmit()
-- onEmpty()
-- onData()
+- `onChange()`
+- `onError()`
+- `onSubmit()`
+- `onEmpty()`
+- `onData()`
 
 ## Vue Usage
 ```html
