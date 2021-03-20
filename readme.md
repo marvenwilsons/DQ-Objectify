@@ -35,8 +35,10 @@
 
 # Props
 - ### **Config** properties
+    - 
     -  `data` 
         - type: `Object`
+        - Accepted: Objectify Schema
         - Desc: A data object uses the `key` of the property for the name of the field, and the object body as the configuration of the input field.
     - `operation` 
         - type: `String`
