@@ -127,12 +127,48 @@ the code below are global essential properties that every item schema declaratio
 }
 ```
 
-### Example 1
-- simple schema with a static beahaviour
+### Native properties on each schema item
+#### Type: `string`
 ```js
-id: {
-        type: "string",
-        value: 'null'
-    },
+{
+    mode: '', // password or search
+    minChar: 3, // minimum character allowed
+    maxChar: 20, // maximum character allowed
+    allowSpecialChars: false, // special character allowed or not
+    allowWhiteSpace: false, // allow white space
+}
+```
+
+#### Type: `number`
+```js
+{
+    min: 0, // minimum value
+    max: 999, // maximum value
+    step: 1, // increment by
+}
+```
+
+#### Type: `select`
+```js
+{
+    options: ["Option 1", "Option 2"]
+}
+```
+
+#### Type: `multiselect`
+```js
+{
+    options: ["Option 1", "Option 2"]
+}
+```
+
+#### Type: `minmax`
+```js
+{
+    options: {
+        min: 1,
+        max: 15
+    }
+}
 ```
 
