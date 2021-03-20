@@ -105,3 +105,34 @@
     - `err` a stream of text or msg about the current error
 - **`onSubmit(Object)`**
     - returns the newly composed user input, ready to sent to the server.
+
+# Defining data schema
+- a schema file is a simple javascript object
+
+### Anatomy of a schema data item
+the code below are global essential properties that every item schema declaration should have.
+```js
+[key name]: {
+    type: "", // string, number, select, multiselect, minmax, range
+    value: "", // default input value on load
+    hoverInfo: "", // description that will appear on key hover
+
+    // render condition is used when an input is dependent on other input value
+    // render condition is optional
+    renderCondition: {
+        controllers: [], // array of key name's that this input depends on
+        // method is boolean function, if it returns true then this input will show.
+        method: el => el[keyName].value == 'something' && true
+    }
+}
+```
+
+### Example 1
+- simple schema with a static beahaviour
+```js
+id: {
+        type: "string",
+        value: 'null'
+    },
+```
+
