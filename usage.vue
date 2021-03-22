@@ -17,6 +17,7 @@
                     operation:'rw', // rw , r
                     submit_button: 'UPDATE', // string: if supplied the button will appear
                     allowRemoveProp: true, // only in read only operations
+                    theme: 'default'
                 }"
             />
             <!-- done usage -->

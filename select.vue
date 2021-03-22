@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div id="option-container" :style="{background: appearance.background}"  :class="['section absolute fullwidth bordergray', option_open ? '' : 'collapsed']">
+        <div id="option-container" :style="{background: appearance.select_option_bg}"  :class="['section absolute fullwidth bordergray', option_open ? '' : 'collapsed']">
             <div style="padding-top:1px;" >
                 <div 
                     :style="{color: appearance.color, background: get_selected_opt == opt ? appearance.select_option_hover_bg : '' || hovered_opt == opt ? appearance.select_option_hover_bg : '', marginBottom:'1px'}" 

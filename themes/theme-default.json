@@ -1,24 +1,24 @@
 { 
-    "title_text_color": "gray",
+    "title_text_color": "#333",
     "sub_title_description_text_color": "gray",
 
-    "wrap_around_border_color": "#313c4c",
-    "divider_border_color":"#313c4c",
+    "wrap_around_border_color": "whitesmoke",
+    "divider_border_color":"whitesmoke",
 
-    "keys_bg_color": "#26344a",
-    "keys_text_color": "#ffa33c",
+    "keys_bg_color": "white",
+    "keys_text_color": "#333",
 
-    "values_bg_color": "#3b495c",
-    "values_text_color": "white",
+    "values_bg_color": "white",
+    "values_text_color": "#333",
 
-    "select_arrow_down_color": "white",
-    "select_option_hover_bg": "#4fa3fd",
+    "select_arrow_down_color": "#333",
+    "select_option_hover_bg": "lightgray",
     "select_option_border_color": "rgba(211, 211, 211, 0.048)",
-    "select_option_bg": "#27303d",
+    "select_option_bg": "whitesmoke",
 
-    "select_chip_bg_color": "rgba(128, 128, 128, 0.363)",
-    "select_chip_hover_bg_color": "rgba(128, 128, 128, 0.562)",
-    "select_chip_border_color": "gray",
+    "select_chip_bg_color": "whitesmoke",
+    "select_chip_hover_bg_color": "whitesmoke",
+    "select_chip_border_color": "whitesmoke",
 
     "button_bg_color": "#ffa33c",
     "button_text_color": "#26344a",
