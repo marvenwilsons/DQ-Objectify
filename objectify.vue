@@ -294,6 +294,9 @@ export default {
     isFucosed: undefined
   }),
   watch: {
+    'config.data': function() {
+      this.init()
+    },
     final_vanilla(current, prev) {
       //
       this.$emit("onChange", {
@@ -422,94 +425,97 @@ export default {
       }
 
       this.$emit('onRemoveProp',nc)
+    },
+    init() {
+       // set theme if set by user
+      if(this.config.theme) {
+        if(typeof this.config.theme == 'string') {
+          this.appearance = themeManager[this.config.theme]
+        } else {
+          this.appearance = this.config.theme 
+        }
+
+        this.ready = true
+      } else if(!this.config.appearance) {
+        this.appearance = themeManager.default
+        this.ready = true
+      }
+
+      // set data
+      this.raw_data_set = this.config.data;
+      this.$emit('onData',this.raw_data_set)
+
+      
+
+      // register multiple input fields
+      const multipleInputFields = ['minmax']
+
+      // assigning correct tab index
+      if(this.config.operation == 'rw') {
+        let dobuleTabIndexes = []
+        this.data_keys = Object.keys(this.raw_data_set)
+        this.data_keys.map((keys, index) => {
+          const type = this.raw_data_set[keys].type
+          if(multipleInputFields.includes(type)) {
+            // multiple digit, a multiple input field
+            this.tab_index_mapping.push(`${index},${index+1}`)
+            this.tab_index_len = this.tab_index_mapping.length
+            dobuleTabIndexes.push(index)
+          } else {
+            // single digit, a one input field
+            this.tab_index_mapping.push(`${index}`)
+          }
+        })
+
+        this.tab_index_mapping = miftm(this.tab_index_mapping)
+        this.data_keys.map((k,ki) => {
+          this.raw_data_set[k].tab_index = this.tab_index_mapping[ki]
+          this.raw_data_set[k].render = true
+        })
+
+        const _ = this
+        this.data_keys.map(key => {
+          this.fields[key] = {
+            // display's an error msg to selected input field
+            postError(msg) {
+              _.err = msg
+              _.err_key = key
+            },
+            removeError() {
+              _.err = undefined
+              _.err_key = undefined
+            },
+            postInfoMsg(msg) {
+              _.info_key = key
+              _.info = msg
+            },
+            removeInfoMsg() {
+              _.info = undefined
+              _.info_key = undefined
+            },
+            pauseRender(cbCondition) {
+              _.renderPaused = key
+              cbCondition(() => {
+                _.renderPaused = false
+              }) 
+            },
+            // disable's input change
+            lock() {
+              _.disabled_field = key
+            }
+          }
+        })
+
+        this.form = {
+          getCurrentFucos() {
+            return _.isFucosed
+          }
+        }
+      }
     }
   },
   mounted() {
-    // set theme if set by user
-    if(this.config.theme) {
-      if(typeof this.config.theme == 'string') {
-        this.appearance = themeManager[this.config.theme]
-      } else {
-        this.appearance = this.config.theme 
-      }
-
-      this.ready = true
-    } else if(!this.config.appearance) {
-      this.appearance = themeManager.default
-      this.ready = true
-    }
-
-    // set data
-    this.raw_data_set = this.config.data;
-    this.$emit('onData',this.raw_data_set)
-
-    
-
-    // register multiple input fields
-    const multipleInputFields = ['minmax']
-
-    // assigning correct tab index
-    if(this.config.operation == 'rw') {
-      let dobuleTabIndexes = []
-      this.data_keys = Object.keys(this.raw_data_set)
-      this.data_keys.map((keys, index) => {
-        const type = this.raw_data_set[keys].type
-        if(multipleInputFields.includes(type)) {
-          // multiple digit, a multiple input field
-          this.tab_index_mapping.push(`${index},${index+1}`)
-          this.tab_index_len = this.tab_index_mapping.length
-          dobuleTabIndexes.push(index)
-        } else {
-          // single digit, a one input field
-          this.tab_index_mapping.push(`${index}`)
-        }
-      })
-
-      this.tab_index_mapping = miftm(this.tab_index_mapping)
-      this.data_keys.map((k,ki) => {
-        this.raw_data_set[k].tab_index = this.tab_index_mapping[ki]
-        this.raw_data_set[k].render = true
-      })
-
-      const _ = this
-      this.data_keys.map(key => {
-        this.fields[key] = {
-          // display's an error msg to selected input field
-          postError(msg) {
-            _.err = msg
-            _.err_key = key
-          },
-          removeError() {
-            _.err = undefined
-            _.err_key = undefined
-          },
-          postInfoMsg(msg) {
-            _.info_key = key
-            _.info = msg
-          },
-          removeInfoMsg() {
-            _.info = undefined
-            _.info_key = undefined
-          },
-          pauseRender(cbCondition) {
-            _.renderPaused = key
-            cbCondition(() => {
-              _.renderPaused = false
-            }) 
-          },
-          // disable's input change
-          lock() {
-            _.disabled_field = key
-          }
-        }
-      })
-
-      this.form = {
-        getCurrentFucos() {
-          return _.isFucosed
-        }
-      }
-    }
+    this.init()
   }
 };
 </script>
