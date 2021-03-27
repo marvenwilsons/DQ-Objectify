@@ -294,9 +294,6 @@ export default {
     isFucosed: undefined
   }),
   watch: {
-    'config.data': function() {
-      this.init()
-    },
     final_vanilla(current, prev) {
       //
       this.$emit("onChange", {
@@ -354,6 +351,18 @@ export default {
 
       return entry;
     },
+    copy(o) {
+      if (o === null) return null;
+
+        var output, v, key;
+        output = Array.isArray(o) ? [] : {};
+        for (key in o) {
+          v = o[key];
+          output[key] = typeof v === "object" ? this.copy(v) : v;
+        }
+
+        return output;
+    },
     data_change({ err, data, key }) {
       if (!this.change_occurs) {
         this.change_occurs = true;
@@ -404,20 +413,7 @@ export default {
       this.disable_all_fields = true
     },
     removeProp(prop_name) {
-      const copy = o => {
-        if (o === null) return null;
-
-        var output, v, key;
-        output = Array.isArray(o) ? [] : {};
-        for (key in o) {
-          v = o[key];
-          output[key] = typeof v === "object" ? copy(v) : v;
-        }
-
-        return output;
-      };
-
-      const nc = copy(this.raw_data_set)
+      const nc = this.copy(this.raw_data_set)
 
       this.$delete(nc,prop_name)
       if(Object.keys(nc).length == 0){
@@ -442,7 +438,7 @@ export default {
       }
 
       // set data
-      this.raw_data_set = this.config.data;
+      this.raw_data_set = this.copy(this.config.data);
       this.$emit('onData',this.raw_data_set)
 
       

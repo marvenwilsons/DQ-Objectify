@@ -27,11 +27,12 @@
 
 <script>
 import RW_sampleData from './lib/sample_data/rw'
+import RW_sampleDataSimple from './lib/sample_data/rw--simple'
 import R_sampleData from './lib/sample_data/r'
 export default {
     data: () => ({
         submit_data: undefined,
-        RW_sampleData: RW_sampleData
+        RW_sampleData: RW_sampleDataSimple
     }),
 
     methods: {
@@ -42,6 +43,7 @@ export default {
 
         // triggers when change occurs
         change({data,btn,fields,form}) {
+            console.log('test')
             /**
              * data     - form data
              * setBtn   - a function to control the state of button, there are 3 btn states, disable, show
