@@ -294,6 +294,9 @@ export default {
     isFucosed: undefined
   }),
   watch: {
+    "config.data": function() {
+      this.init()
+    },
     final_vanilla(current, prev) {
       //
       this.$emit("onChange", {
