@@ -2,7 +2,6 @@
   <!-- @Objectify html -->
   <div id="dq-objectify" v-if="ready" class="relative">
     <!-- <debug :data="{entries_with_render_conditions,final_model,final_vanilla,hidden_entries,raw_data_set}"></debug> -->
-
     <!-- view start here -->
     <div >
       <h6 v-if="config.title" :style="{color: appearance.title_text_color}">{{config.title}}</h6>
@@ -427,18 +426,24 @@ export default {
     },
     init() {
        // set theme if set by user
-      if(this.config.theme) {
-        if(typeof this.config.theme == 'string') {
-          this.appearance = themeManager[this.config.theme]
-        } else {
-          this.appearance = this.config.theme 
-        }
+      if(this.$colorMode && this.$colorMode.preference) {
+        this.appearance = themeManager[this.$colorMode.preference]
+        this.ready = true
+      } else {
+        if(this.config.theme) {
+          if(typeof this.config.theme == 'string') {
+            this.appearance = themeManager[this.config.theme]
+          } else {
+            this.appearance = this.config.theme 
+          }
 
-        this.ready = true
-      } else if(!this.config.appearance) {
-        this.appearance = themeManager.default
-        this.ready = true
+          this.ready = true
+        } else if(!this.config.appearance) {
+          this.appearance = themeManager.default
+          this.ready = true
+        }
       }
+
 
       // set data
       this.raw_data_set = this.copy(this.config.data);
