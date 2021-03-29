@@ -166,9 +166,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.dq-inp-objtfy {
-  background: transparent;
-}
-</style>
