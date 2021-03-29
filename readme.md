@@ -52,6 +52,7 @@
     - `config`
     - `theme` 
         - Type:`Object || String`
+        - first it will check nuxt's `$colorMode.preference` value and use it if its defined.
 
         - ## Theme properties
             - title_text_color
