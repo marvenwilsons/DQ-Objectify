@@ -297,20 +297,21 @@ export default {
       this.init()
     },
     final_vanilla(current, prev) {
-      //
-      this.$emit("onChange", {
-        data: current,
-        btn: {
-          visibility: this.set_btn_visibility,
-          disable: this.set_btn_disable,
-          
-        },
-        /** fields
-           * passes each field methods, ei: [fieldName].postError([Boolean Operation],'Error Msg')
-           */
-        fields: this.fields,
-        form: this.form
-      });
+      if(Object.keys(prev).length != 0) {
+        this.$emit("onChange", {
+          data: current,
+          btn: {
+            visibility: this.set_btn_visibility,
+            disable: this.set_btn_disable,
+            
+          },
+          /** fields
+             * passes each field methods, ei: [fieldName].postError([Boolean Operation],'Error Msg')
+             */
+          fields: this.fields,
+          form: this.form
+        });
+      }
     },
   },
   methods: {

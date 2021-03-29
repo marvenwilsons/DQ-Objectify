@@ -1,6 +1,15 @@
 <template>
     <div>
-        <input @focus="$emit('onFucos',_key)" :tabindex="parseInt(key_index)" :placeholder="number_placeholder" v-model="number_v_model" :style="{border:'none',outline:'none', color: color.color}" class="fullwidth padleft050 dq-inp-objtfy" type="number" />
+        <input 
+        @focus="$emit('onFucos',_key), inputIsActive = true"
+        @blur="inputIsActive = false" 
+        :tabindex="parseInt(key_index)" 
+        :placeholder="number_placeholder" 
+        v-model="number_v_model" 
+        :style="{border:'none',outline:'none', color: color.color}" 
+        class="fullwidth padleft050 dq-inp-objtfy" 
+        type="number" 
+        />
     </div>
 </template>
 
@@ -9,7 +18,8 @@
         props: ["data", "_key", "color", "key_index", "disabled"],
         data: () => ({
             number_v_model: undefined,
-            number_placeholder: undefined
+            number_placeholder: undefined,
+            inputIsActive: false
         }),
         watch: {
             number_v_model(current_input,prev_input){
@@ -26,11 +36,13 @@
                         key: this._key
                     })
                 } else {
-                    this.$emit("onChange", {
-                        err: null,
-                        data: current_input,
-                        key: this._key
-                    })
+                    if(this.inputIsActive == true) {
+                        this.$emit("onChange", {
+                            err: null,
+                            data: current_input,
+                            key: this._key
+                        })
+                    }
                 }
             }
         },

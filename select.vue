@@ -31,7 +31,8 @@ export default {
     data: () => ({
         option_open: false,
         selected_opt: undefined,
-        hovered_opt: undefined
+        hovered_opt: undefined,
+        inputIsSelected: false
     }),
     computed: {
         get_selected_opt() {

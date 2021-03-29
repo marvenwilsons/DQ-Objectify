@@ -1,5 +1,5 @@
 <template>
-    <div id="dq-multiselect" @focus="$emit('onFucos',_key)" @keypress.enter="onEnter" @keydown="keydown" @focusout="focusout" :tabindex="parseInt(key_index)" @click.right.prevent="" class="select relative fullwidth">
+    <div id="dq-multiselect" @focus="$emit('onFucos',_key), inputIsSelected = true" @blur="inputIsSelected = false" @keypress.enter="onEnter" @keydown="keydown" @focusout="focusout" :tabindex="parseInt(key_index)" @click.right.prevent="" class="select relative fullwidth">
         <div  @click.prevent="mutate_option_open"  class="pointer flex spacebetween">
             <div class="padleft050 fullwidth flex flexwrap">
                 <div 
@@ -75,7 +75,8 @@ export default {
         selected_opt: undefined,
         selected_opts: [],
         hovered_opt: undefined,
-        hovered: false
+        hovered: false,
+        inputIsSelected: false
     }),
     computed: {
         get_selected_opt() {
@@ -90,11 +91,13 @@ export default {
             this.data.value = this.data.options.indexOf(current)
         },
         selected_opts() {
-            this.$emit("onChange", {
-                err: null,
-                data: this.selected_opts,
-                key: this._key
-            })
+            if(this.inputIsSelected == true) {
+                this.$emit("onChange", {
+                    err: null,
+                    data: this.selected_opts,
+                    key: this._key
+                })
+            }
         }
     },
     methods: {

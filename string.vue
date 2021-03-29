@@ -1,7 +1,8 @@
 <template>
   <div>
     <input
-      @focus="$emit('onFucos',_key)"
+      @focus="$emit('onFucos',_key), inputIsActive = true"
+      @blur="inputIsActive = false"
       :disabled="disabled"
       :tabindex="parseInt(key_index)"
       :style="{border:'none',outline:'none', color:color.color}"
@@ -19,6 +20,7 @@ export default {
   data: () => ({
     text_input_model: undefined,
     text_placehoder: undefined,
+    inputIsActive: false,
     string_validation: {
       minChar(val, arg, err) {
         if (val.length > arg.minChar) {
@@ -138,11 +140,14 @@ export default {
           return false
         }
       })) {
-        this.$emit("onChange", {
-          err: null,
-          data: current_string_being_input,
-          key: this._key
-        });
+        if(this.inputIsActive == true) {
+          console.log('emitting')
+          this.$emit("onChange", {
+            err: null,
+            data: current_string_being_input,
+            key: this._key
+          });
+        }
       } else {
         this.$emit("onChange", {
           err: err,
