@@ -447,7 +447,7 @@ export default {
 
       // set data
       this.raw_data_set = this.copy(this.config.data);
-      this.$emit('onData',this.raw_data_set)
+      this.$emit('onMount',this.raw_data_set)
 
       
 

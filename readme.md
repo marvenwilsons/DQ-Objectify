@@ -104,8 +104,10 @@
 - **`onError(err)`** 
     - fires everytime an error occours
     - `err` a stream of text or msg about the current error
-- **`onSubmit(Object)`**
-    - returns the newly composed user input, ready to sent to the server.
+- **`onSubmit(data:Object)`**
+    - `data` returns the newly composed user input, ready to sent to the server.
+- **`onMount(data:Object)`**
+    - fires after objectify data initialization, passes the data payload
 
 # Defining data schema
 - a schema file is a simple javascript object
