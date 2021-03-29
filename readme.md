@@ -53,6 +53,7 @@
     - `theme` 
         - Type:`Object || String`
         - first it will check nuxt's `$colorMode.preference` value and use it if its defined.
+        - by default Objectify uses `dq-css` theme. Read more: https://github.com/marvenwilsons/DQ-CSS
 
         - ## Theme properties
             - title_text_color
