@@ -35,7 +35,15 @@
                 class="fullwidth padleft025 flex spacebetween"
                 v-if="config.operation === 'r'"
               >
-                <div class="flex1" >{{obj_key}}</div>
+                <div v-if="!Array.isArray(obj_key)" class="flex1" >{{ obj_key }}</div>
+                <div v-if="Array.isArray(obj_key)" class="flex" >
+                  <div 
+                    :style="{border: `1px solid ${appearance.select_chip_border_color}`, background:appearance.select_chip_bg_color}"
+                    class="s_opts padright025 padleft025 borderRad4" 
+                    v-for="(item,i) in obj_key" :key="item + i" > 
+                    {{item}}   
+                  </div>
+                </div>
                 <div
                   @click="removeProp(obj_index)"
                   v-if="config.allowRemoveProp"
