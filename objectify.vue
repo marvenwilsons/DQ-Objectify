@@ -465,26 +465,26 @@ export default {
 
       // assigning correct tab index
       if(this.config.operation == 'rw') {
-        let dobuleTabIndexes = []
-        this.data_keys = Object.keys(this.raw_data_set)
-        this.data_keys.map((keys, index) => {
-          const type = this.raw_data_set[keys].type
-          if(multipleInputFields.includes(type)) {
-            // multiple digit, a multiple input field
-            this.tab_index_mapping.push(`${index},${index+1}`)
-            this.tab_index_len = this.tab_index_mapping.length
-            dobuleTabIndexes.push(index)
-          } else {
-            // single digit, a one input field
-            this.tab_index_mapping.push(`${index}`)
-          }
-        })
+        // let dobuleTabIndexes = []
+        // this.data_keys = Object.keys(this.raw_data_set)
+        // this.data_keys.map((keys, index) => {
+        //   const type = this.raw_data_set[keys].type
+        //   if(multipleInputFields.includes(type)) {
+        //     // multiple digit, a multiple input field
+        //     this.tab_index_mapping.push(`${index},${index+1}`)
+        //     this.tab_index_len = this.tab_index_mapping.length
+        //     dobuleTabIndexes.push(index)
+        //   } else {
+        //     // single digit, a one input field
+        //     this.tab_index_mapping.push(`${index}`)
+        //   }
+        // })
 
-        this.tab_index_mapping = miftm(this.tab_index_mapping)
-        this.data_keys.map((k,ki) => {
-          this.raw_data_set[k].tab_index = this.tab_index_mapping[ki]
-          this.raw_data_set[k].render = true
-        })
+        // this.tab_index_mapping = miftm(this.tab_index_mapping)
+        // this.data_keys.map((k,ki) => {
+        //   this.raw_data_set[k].tab_index = this.tab_index_mapping[ki]
+        //   this.raw_data_set[k].render = true
+        // })
 
         const _ = this
         this.data_keys.map(key => {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex" >
         <input 
         @focus="$emit('onFucos',_key), inputIsActive = true"
         @blur="inputIsActive = false" 
@@ -7,9 +7,19 @@
         :placeholder="number_placeholder" 
         v-model="number_v_model" 
         :style="{border:'none',outline:'none', color: color.color}" 
-        class="fullwidth padleft050 dq-inp-objtfy" 
+        :step="step"
+        class="fullwidth padleft050 dq-inp-objtfy flex1" 
         type="number" 
         />
+        <div  style="max-width:70px; max-height:25px;" class="flex relative" >
+            <div v-if="!isStepOpen" @click="isStepOpen = true" class="pad025 pointer flex flexcenter" >
+                ‹
+            </div>
+            <div v-if="isStepOpen" @click="isStepOpen = false" class="pad025 pointer flex flexcenter" >
+                ›
+            </div>
+            <input v-if="isStepOpen" v-model="step" style="max-width:50px;" type="number">
+        </div>
     </div>
 </template>
 
@@ -19,7 +29,9 @@
         data: () => ({
             number_v_model: undefined,
             number_placeholder: undefined,
-            inputIsActive: false
+            inputIsActive: false,
+            isStepOpen: false,
+            step: 1
         }),
         watch: {
             number_v_model(current_input,prev_input){
@@ -51,6 +63,10 @@
                 this.number_v_model = this.data.value
             } else {
                 this.number_placeholder = 'none'
+            }
+
+            if(this.data.step) {
+                this.step = this.data.step
             }
         }
     }
